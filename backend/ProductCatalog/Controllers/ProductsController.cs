@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using ProductCatalog.Models;
+using ProductCatalog.Database;
 using ProductCatalog.Models.Entities;
 
 namespace ProductCatalog.Controllers
@@ -46,6 +46,7 @@ namespace ProductCatalog.Controllers
         [HttpPost]
         public async Task<ActionResult<Product>> PostProduct(Product product)
         {
+            product.Id = null;
             _context.Products.Add(product);
             await _context.SaveChangesAsync();
 

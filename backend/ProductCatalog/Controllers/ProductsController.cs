@@ -23,14 +23,17 @@ namespace ProductCatalog.Controllers
 
         // GET: api/products
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
+        [ProducesResponseType(typeof(IEnumerable<Product>), StatusCodes.Status200OK)]
+        public async Task<IActionResult> GetProducts()
         {
-            return await _context.Products.ToListAsync();
+            return Ok(await _context.Products.ToListAsync());
         }
 
         // GET: api/products/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Product>> GetProduct(int id)
+        [ProducesResponseType(typeof(Product), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> GetProduct(int id)
         {
             var product = await _context.Products.FindAsync(id);
 
@@ -39,12 +42,13 @@ namespace ProductCatalog.Controllers
                 return NotFound();
             }
 
-            return product;
+            return Ok(product);
         }
 
         // POST: api/products
         [HttpPost]
-        public async Task<ActionResult<Product>> PostProduct(Product product)
+        [ProducesResponseType(typeof(Product), StatusCodes.Status200OK)]
+        public async Task<IActionResult> PostProduct(Product product)
         {
             product.Id = null;
             _context.Products.Add(product);
@@ -55,8 +59,11 @@ namespace ProductCatalog.Controllers
 
         // PUT: api/products/5
         [HttpPut("{id}")]
+        [ProducesResponseType(typeof(Product), StatusCodes.Status200OK)]
         public async Task<IActionResult> PutProduct(int id, Product product)
         {
+            _context.ChangeTracker.Clear();
+
             if (id != product.Id)
             {
                 return BadRequest();
@@ -85,6 +92,7 @@ namespace ProductCatalog.Controllers
 
         // DELETE: api/products/5
         [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> DeleteProduct(int id)
         {
             var product = await _context.Products.FindAsync(id);

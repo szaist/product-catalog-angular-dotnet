@@ -4,10 +4,18 @@ import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { AddProductRequest } from "../../Models/Requests/addProduct.request";
 
+export type IProductService = {
+  getProduct(productId: number): Observable<Product>
+  getProducts(): Observable<Product[]>
+  addProduct(product: AddProductRequest): Observable<Product>
+  deleteProduct(productId: number): Observable<void>
+  updateProduct(productId: number, product: Product): Observable<void>
+}
+
 @Injectable({
   providedIn: 'root'
 })
-export class ProductService {
+export class ProductService implements IProductService {
   constructor(private httpClient: HttpClient) {
   }
 

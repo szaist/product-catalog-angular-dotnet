@@ -47,6 +47,7 @@ namespace ProductCatalog.Controllers
 
         // POST: api/products
         [HttpPost]
+        [Consumes("application/json")]
         [ProducesResponseType(typeof(Product), StatusCodes.Status200OK)]
         public async Task<IActionResult> PostProduct(Product product)
         {
@@ -59,7 +60,8 @@ namespace ProductCatalog.Controllers
 
         // PUT: api/products/5
         [HttpPut("{id}")]
-        [ProducesResponseType(typeof(Product), StatusCodes.Status200OK)]
+        [Consumes("application/json")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> PutProduct(int id, Product product)
         {
             _context.ChangeTracker.Clear();

@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
-import { NgClass, NgIf } from "@angular/common";
 import { FormGroup, FormControl } from "@angular/forms";
 import { ProductService } from "../../Services/Product/product.service";
 import { Subject, takeUntil } from "rxjs";
@@ -11,7 +10,7 @@ import { Router } from "@angular/router";
 @Component({
   selector: 'app-product-add',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule, NgIf, NgClass],
+  imports: [FormsModule, ReactiveFormsModule],
   templateUrl: './product-add.component.html',
   styleUrl: './product-add.component.css'
 })

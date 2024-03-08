@@ -1,0 +1,28 @@
+<h1>Product list</h1>
+
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Product name</th>
+    <th>Price</th>
+    <th>Description</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+    @for (item of products; track item.id) {
+      <tr>
+        <td>{{ item.id }}</td>
+        <td>{{ item.name }}</td>
+        <td>{{ item.price }}</td>
+        <td>{{ item.description }}</td>
+        <td>
+          <Button class="btn btn-primary" [routerLink]="['/products/', item.id]">Edit</Button>
+        </td>
+      </tr>
+    } @empty {
+      <p class="alert alert-info">There is no item in the database.</p>
+    }
+  </tbody>
+</table>

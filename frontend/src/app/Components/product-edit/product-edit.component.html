@@ -1,0 +1,59 @@
+<div class="form-area">
+  <form (submit)="onSubmit()" [formGroup]="form">
+    <div class="form-group">
+      <label for="name">Product name</label>
+      <input
+        class="form-control"
+        formControlName="name"
+        id="name"
+        name="name"
+        placeholder="Product name"
+        type="text"
+      >
+
+      @if (Name?.touched && Name?.invalid) {
+        @if (Name?.errors?.['required']) {
+          <div class="alert alert-danger mt-2">
+            Product name field is required!
+          </div>
+        }
+      }
+    </div>
+
+    <div class="form-group">
+      <label for="price">Price</label>
+      <input
+        class="form-control"
+        formControlName="price"
+        id="price"
+        min="0"
+        name="price"
+        placeholder="Price"
+        type="number"
+      >
+
+      @if (Price?.touched && Price?.invalid) {
+        @if (Price?.errors?.['required']) {
+          <div class="alert alert-danger mt-2">
+            Product price field is required!
+          </div>
+        }
+      }
+    </div>
+
+    <div class="form-group">
+      <label for="description">Product description</label>
+      <textarea
+        class="form-control"
+        cols="30"
+        formControlName="description"
+        id="description"
+        name="description"
+        placeholder="Product description"
+        rows="10"
+      >
+      </textarea>
+    </div>
+    <button [disabled]="form.invalid" class="btn btn-primary" type="submit">Save</button>
+  </form>
+</div>

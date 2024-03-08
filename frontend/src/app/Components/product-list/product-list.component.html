@@ -19,10 +19,17 @@
         <td>{{ item.description }}</td>
         <td>
           <Button class="btn btn-primary" [routerLink]="['/products/', item.id]">Edit</Button>
+          <app-product-delete-modal
+            [productId]="item.id" (refreshProducts)="productSubscribe()" class="ms-2"
+          ></app-product-delete-modal>
         </td>
       </tr>
     } @empty {
-      <p class="alert alert-info">There is no item in the database.</p>
+      <tr>
+        <td colspan="4">
+          <p class="alert alert-info d-block w-100">There is no item in the database.</p>
+        </td>
+      </tr>
     }
   </tbody>
 </table>

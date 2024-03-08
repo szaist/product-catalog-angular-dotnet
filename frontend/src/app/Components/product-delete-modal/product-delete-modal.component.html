@@ -1,0 +1,14 @@
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Delete product</h4>
+  </div>
+  <div class="modal-body">
+    <p>Are you sure you want to delete this product?</p>
+  </div>
+  <div class="modal-footer">
+    <button (click)="modal.close('cancel')" class="btn btn-outline-secondary">No</button>
+    <button (click)="modal.close('delete')" class="btn btn-danger">Yes</button>
+  </div>
+</ng-template>
+
+<button (click)="openModal(content)" class="btn btn-danger">Delete</button>

@@ -3,11 +3,12 @@ import { Subject, takeUntil } from "rxjs";
 import { Product } from "../../Models/Entities/product.entity";
 import { ProductService } from "../../Services/Product/product.service";
 import { RouterLink } from "@angular/router";
+import { ProductDeleteModalComponent } from "../product-delete-modal/product-delete-modal.component";
 
 @Component({
   selector: 'app-product-list',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, ProductDeleteModalComponent],
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.css'
 })
